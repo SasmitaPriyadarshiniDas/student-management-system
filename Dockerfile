@@ -2,11 +2,11 @@
 FROM maven:3.9-eclipse-temurin-21 AS build
 WORKDIR /src
 COPY . .
-ARG MODULE
+ARG MODULE=student-service
 RUN --mount=type=cache,target=/root/.m2 mvn -q -B -pl ${MODULE} -am -DskipTests package
 
 FROM eclipse-temurin:21-jre
-ARG MODULE
+ARG MODULE=student-service
 RUN useradd -r -u 1001 app
 WORKDIR /app
 COPY --from=build /src/${MODULE}/target/*.jar /app/app.jar
