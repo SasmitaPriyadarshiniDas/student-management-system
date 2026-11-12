@@ -1,23 +1,23 @@
 # This workflow builds and pushes a Docker container to an Azure Web App when a commit is pushed to the main branch.
 #
 # Before running this workflow:
-# - Replace `your-app-name` below with the name of your Azure Web App.
-# - Add the Azure publish profile as the `AZURE_WEBAPP_PUBLISH_PROFILE` repository secret.
-# - Configure the Azure Web App to pull from GHCR using the registry settings described in the Azure documentation.
+# - Set the repository variable AZURE_WEBAPP_NAME to your Azure Web App name.
+# - Add the Azure publish profile as the AZURE_WEBAPP_PUBLISH_PROFILE repository secret.
+# - Ensure your Azure Web App is configured to pull from GHCR using the registry settings in the Azure docs.
 
 name: Build and deploy a container to an Azure Web App
 
 env:
-  AZURE_WEBAPP_NAME: your-app-name # Set this to the name of your Azure Web App.
+  AZURE_WEBAPP_NAME: ${{ vars.AZURE_WEBAPP_NAME }}
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
   contents: read
-  packages: write # Required for GITHUB_TOKEN to push the image to GHCR.
+  packages: write
 
 jobs:
   build:
