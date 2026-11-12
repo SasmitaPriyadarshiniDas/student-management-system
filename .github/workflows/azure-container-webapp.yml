@@ -63,6 +63,8 @@ jobs:
           push: true
           tags: ghcr.io/${{ env.REPO }}:${{ github.sha }}
           file: ./Dockerfile
+          build-args: |
+            MODULE=student-service
 
   deploy:
     permissions:
