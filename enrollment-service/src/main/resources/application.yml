@@ -1,0 +1,17 @@
+server:
+  port: 8083
+
+spring:
+  application:
+    name: enrollment-service
+  config:
+    import: classpath:sms-common.yml
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/enrollment_db}
+    username: ${DB_USER:sms}
+    password: ${DB_PASSWORD:sms}
+
+sms:
+  clients:
+    student-service:
+      url: ${STUDENT_SERVICE_URL:http://localhost:8081}

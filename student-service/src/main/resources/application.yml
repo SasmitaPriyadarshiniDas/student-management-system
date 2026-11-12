@@ -1,0 +1,12 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: student-service
+  config:
+    import: classpath:sms-common.yml
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/student_db}
+    username: ${DB_USER:sms}
+    password: ${DB_PASSWORD:sms}
